@@ -1,16 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { exercisesOptions, fetchData } from '../utils/fetchData';
-const url = 'https://exercisedb.p.rapidapi.com/exercises/bodyPartList';
-const SearchExercises = () => {
+import HorizontalScrollbar from './HorizontalScrollbar';
+const SearchExercises = ({setExercises,bodyPart,setBodyPart}) => {
   const [search, setSearch] = useState('');
+  const [bodyPartsList, setBodyPartsList] = useState([]);
+  
+  useEffect(() => {
+   
+    const fetchExercisesBodyPartsList = async () => {
+      const BodyListsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exercisesOptions);
+      
+      setBodyPartsList(['all',...BodyListsData])
+    }
+    fetchExercisesBodyPartsList();
+ },[])
+
 
   const handleSearch = async () => {
     if (search) {
-      const exercisesData = await fetchData(url, exercisesOptions);
+      const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exercisesOptions);
       console.log(exercisesData);
-      const searchedExercises = exercisesData.filter((exercise)=>exercise.name.toLowerCase().includes(search))
-      
+      const searchedExercises = exercisesData.filter((exercise) => exercise.name.toLowerCase().includes(search) ||
+        exercise.target.toLowerCase().includes(search)||
+        exercise.equipment.toLowerCase().includes(search)||
+        exercise.bodyPart.toLowerCase().includes(search)
+      )
+      setSearch('');
+      setExercises(searchedExercises);
     }
 
   }
@@ -42,6 +59,9 @@ const SearchExercises = () => {
           <Button className='search-btn' sx={{ bgcolor: '#ff2625', borderTopLeftRadius: '0', borderBottomLeftRadius: '0', color: '#fff', height: '56px', width: { lg: '175px', xs: '80px' }, fontSize: { lg: '20px', xs: '14px' }, position: 'absolute', right: '0' }}
           onClick={handleSearch}
           >Search</Button>
+        </Box>
+        <Box sx={{ position:'relative', width:'100%', p:'20px' }} className="react-horizontal-scrolling-menu--scroll-container">
+    <HorizontalScrollbar data={bodyPartsList} bodyPart={bodyPart} setBodyPart={setBodyPart} />
         </Box>
       </Stack>
     </div>
