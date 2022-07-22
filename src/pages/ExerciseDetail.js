@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import Detail from '../components/Detail';
 import ExerciseVideos from '../components/ExerciseVideos';
 import SimilarExercises from '../components/SimilarExercises';
-const ExerciseDetail = () => { 
+const ExerciseDetail = () => {  
   const [exerciseDetail, setExerciseDetail] = useState({});
   const [exerciseVideos, setExerciseVideos] = useState([]);
   const [targetDetail, setTargetDetail] = useState([]);
@@ -23,15 +23,15 @@ const ExerciseDetail = () => {
     setExerciseVideos(exerciseVideoData);
 
 
-      const targetDetails = await fetchData(`${exerciseDbUrl}/exercises/target`, exercisesOptions);
-      const targetDetail= await targetDetails.find((item) => item.id === id);
-      console.log(targetDetail);
-      setTargetDetail(targetDetail);
+      const targetDetails = await fetchData(`${exerciseDbUrl}/exercises/target/${detail.target}`, exercisesOptions);
+      // const targetDetail= await targetDetails.find((item) => item.id === id);
+      console.log(targetDetails);
+      setTargetDetail(targetDetails);
       
       
-      const equipmentDetails = await fetchData(`${exerciseDbUrl}/exercises/equipment`, exercisesOptions);
-      const equipmentDetail= await equipmentDetails.find((item) => item.id === id);
-      setEquipmentDetail(equipmentDetail);
+      const equipmentDetails = await fetchData(`${exerciseDbUrl}/exercises/equipment/${detail.equipment}`, exercisesOptions);
+      // const equipmentDetail= await equipmentDetails.find((item) => item.id === id);
+      setEquipmentDetail(equipmentDetails);
     }
     fetchExerciseDetail();
   },[id])

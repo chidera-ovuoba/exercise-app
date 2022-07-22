@@ -6,7 +6,7 @@ import ExerciseDetail from './pages/ExerciseDetail';
 import { Box } from '@mui/material';
 import Home from './pages/Home';
 import Footer from './components/Footer';
-
+import FitnessCalulator from './pages/FitnessCalulator';
 const App = () => {
   return (
     <Box width='400px'sx={{width:{xl:'1488px'}}} m='auto'>
@@ -14,7 +14,8 @@ const App = () => {
       <Routes>
         <Route path='/' exact element={<Home />} />
          <Route path='/exercise/:id' element={<ExerciseDetail/>} />
-      </Routes>
+         <Route path='/fitnessCalculator' element={< FitnessCalulator/>}></Route>     
+       </Routes>
       <Footer/>
     </Box>
   )
