@@ -58,13 +58,65 @@ const BMIComponent = () => {
 //         } 
 //         fetchmacroCalculatorData();
 //    },[macroCalculatorParams.gender])
-   useEffect(() => {
+
+
+//    useEffect(() => {
+//      const fetchmacroCalculatorData = async () => {
+//         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/activities?intensitylevel=1`,bmioptions);
+//          console.log(data);
+//         //  console.log(data.data.map((item) => {
+//         //      return item;
+//         //  }))
+//             // setMacroCalculator(data.data);
+//         } 
+//         fetchmacroCalculatorData();
+//    }, [])
+    
+    //   useEffect(() => {
+    //  const fetchmacroCalculatorData = async () => {
+    //     const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/burnedcalorie?activityid=bi_1&activitymin=25&weight=75`,bmioptions);
+    //      console.log(data.data);
+    //     //  console.log(data.data.map((item) => {
+    //     //      return item.activity;
+    //     //  }))
+    //         // setMacroCalculator(data.data);
+    //     } 
+    //     fetchmacroCalculatorData();
+    //   }, [])
+    
+
+//         useEffect(() => {
+//      const fetchmacroCalculatorData = async () => {
+//         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/food?foodid=SR25_1_1`,bmioptions);
+//          console.log(data.data);
+//         //  console.log(data.data.map((item) => {
+//         //      return item.activity;
+//         //  }))
+//             // setMacroCalculator(data.data);
+//         } 
+//         fetchmacroCalculatorData();
+//    },[])
+
+    
+    //     useEffect(() => {
+    //  const fetchmacroCalculatorData = async () => {
+    //     const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/foodids?subtablename=SR25_1`,bmioptions);
+    //      console.log(data.data);
+    //     //  console.log(data.data.map((item) => {
+    //     //      return item.activity;
+    //     //  }))
+    //         // setMacroCalculator(data.data);
+    //     } 
+    //     fetchmacroCalculatorData();
+    //     }, [])
+    
+      useEffect(() => {
      const fetchmacroCalculatorData = async () => {
-        const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/foodids/tablenames`,bmioptions);
-         console.log(data);
-        //  console.log(data.data.map((item) => {
-        // //      return item.activity;
-        // //  }))
+        const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/foodids/subtablenames?tablename=SR25`,bmioptions);
+         console.log(data.data);
+         console.log(data.data.map((item) => {
+             return item.subDataType;
+         }))
             // setMacroCalculator(data.data);
         } 
         fetchmacroCalculatorData();
