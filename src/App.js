@@ -9,7 +9,8 @@ import Footer from './components/Footer';
 import FitnessCalulator from './pages/FitnessCalulator';
 const App = () => {
   return (
-    <Box width='400px'sx={{width:{xl:'1488px'}}} m='auto'>
+    <Box className='bg_smoke'>
+    <Box>
       <Navbar/>
       <Routes>
         <Route path='/' exact element={<Home />} />
@@ -17,6 +18,7 @@ const App = () => {
          <Route path='/fitnessCalculator' element={< FitnessCalulator/>}></Route>     
        </Routes>
       <Footer/>
+    </Box>
     </Box>
   )
 }

@@ -1,6 +1,10 @@
 body {
-  font-family: 'Josefin Sans';
-  background-color: #FFFAFB;
+  /* font-family: 'Josefin Sans';
+  font-family: 'Black Ops One', cursive;
+    font-family: 'Fredericka the Great', cursive;
+    font-family: 'Philosopher', sans-serif; */
+    font-family: 'Timmana', sans-serif;
+  /* background-color: #FFFAFB; */
 }
 
 * {
@@ -9,10 +13,56 @@ body {
   box-sizing: border-box;
 
 }
-
-::-webkit-scrollbar {
-  width: 0px;
+.features_wrapper{
+  background-image: url('./assets/images/smoke-overlay_feature.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* width:100%;
+  height:100%; */
 }
+.accomplishments__wrapper{
+  background-image: url('./assets/images/High_resolution_wallpaper_background_ID_77701968127.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: center 100%; */
+  background-attachment: fixed;
+  /* width:100%;
+  height:100%; */
+}
+
+
+.section_wrapper{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background:#131212;
+  padding-block: 12rem;
+  box-shadow: 0px 0px 0px 100vmax #131212 ;
+  clip-path: inset(-2px -100vmax);
+  flex-wrap: wrap;
+  gap:4rem;
+}
+.section_subheading{
+  font-size: 30px;
+  color:#fff;
+}
+.section_heading{
+  font-size: 35px;
+  color:#ed0202;
+}
+.section_heading_3{
+    font-size: 30px;
+    color: #ed0202;
+}
+.section_paragraph{
+  color:#fff;
+  font-size: 18px;
+font-family: 'Philosopher', sans-serif;
+line-height: 2rem;
+}
+
+
+
 
 .right-arrow,
 .left-arrow {
@@ -53,16 +103,33 @@ body {
   height: 742px;
 }
 
-.hero-banner-img {
-  position: absolute;
-  right: 40px;
-  top: 0px;
-  width: 700px;
-  height: 900px;
-  margin-top: -330px;
 
+.hero_banner-img{
+   width: 100%;
+   height:100%;
+   max-height:64rem;
+   filter:brightness(100%) contrast(100%) grayscale(100%);
+   opacity:0.87;
+}
+.hero_banner-logo{
+   width: 100%;
+   filter:brightness(80%);
+   opacity:0.55;
 }
 
+
+.bg_smoke{
+  background-image: url("./assets/images/smoke-bg.jpg");
+    background-repeat:no-repeat;
+    background-size:100vw 100vh;
+    background-position:right top;
+    /* background-attachment: fixed; */
+}
+@media (width < 950px) {
+  .bg_smoke{
+    background-size: 150vw 100vh;
+  }
+}
 .exercise-card {
   width: 400px;
   height: 445px;
@@ -106,12 +173,79 @@ body {
   text-decoration: none;
 }
 
+.hero_banner-logo-container{
+  display: flex;
+ justify-content: center;
+ align-items: center;  
+}
+.menu_nav-wrapper + svg {
+   display:none
+}
+
+@media (width < 960px){
+  .menu_nav-wrapper + svg {
+      display: block
+  }
+   
+  .menu_nav-wrapper.openNav{
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    z-index: 5;
+  }
+  /* .navbar_overlay{
+    flex:1;
+    min-width: 250px;
+    background-color: transparent;
+    transition: all 0.5s;
+  } */
+  .menu_nav{
+    background: #454441;
+    width:65vw;
+    max-width: 400px;
+  }
+  .menu_nav.closeAnimation{
+    animation: slideOut 0.5s ease-in-out;
+   }
+  .menu_nav.slideAnimation{
+    animation: slideIn 0.5s ease-in-out;
+  }
+  @keyframes slideIn {
+    0%{
+    transform: translateX(-66vw);
+  }
+  100%{
+      transform: translateX(0);
+  }
+  }
+  @keyframes slideOut {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+    transform: translateX(-66vw);
+  }
+  }
+}
+
 @media screen and (max-width:1200px) {
   .detail-image {
     width: 300px;
     height: 300px;
   }
+  /* .hero_banner-img{
+    max-height:600px ;
+  } */
 
+  .hero_banner-logo-container{
+    display: none;
+  }
+  img[alt='logo']{
+    width:100px;
+    height:100px
+  }
 
   .react-horizontal-scrolling-menu--scroll-container {
     width: 500px;
@@ -123,9 +257,6 @@ body {
     position: static !important;
   }
 
-  .hero-banner-img {
-    display: none;
-  }
 
   .exercise-card {
     width: 320px;
