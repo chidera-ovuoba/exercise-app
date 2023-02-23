@@ -4,7 +4,7 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import SportsIcon from '@mui/icons-material/Sports';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
-import FeaturesImg from '../assets/images/sporty_woman.webp';
+import FeaturesImg from '../assets/images/dumbbell-woman-young-fit-exercise.webp';
 
 const featuresData = [
     {
@@ -34,7 +34,7 @@ const Features = () => {
      const styles = {
     features_content: {
       flex: '1',
-      width:'40%',
+      width:'100%',
       display: 'grid',
       gap:'1.5rem',
       minWidth:'400px',
@@ -44,7 +44,7 @@ const Features = () => {
     },
     features_Img_Banner: {
       flex: '1',
-      // width: '%',
+      width: '100%',
       display: 'grid',
       position:'relative',
        placeItems:'center',
@@ -52,11 +52,11 @@ const Features = () => {
       width: '18rem',
       height:'50rem',
       '& > img': {
-        width: '30rem',
+        width: '37rem',
         position:'absolute',
         height:'calc(100% + 16rem)',
         bottom:'0rem',
-        '@media (width < 996px)':{
+        '@media (width < 1150px)':{
           position:'static',
           height:'inherit',
           width: 'inherit',
@@ -65,10 +65,18 @@ const Features = () => {
       '@media (width < 500px)':{
         minWidth:'200px'
       },
-      '@media (width < 400px)': {
-        width:'10rem',
+      '@media (width < 1150px)':{
+        // height:'inherit',
+        width: '35rem',
+      },
+      '@media (width < 650px)': {
+        width:'20rem',
         height: '35rem',
-        }
+        },
+      '@media (width < 380px)': {
+        width:'15rem',
+        height: '30rem',
+        },
        },
        features_wrapper: {
          width: '100%',
@@ -100,7 +108,7 @@ const Features = () => {
 
   return (
       <Box className='features_wrapper'>
-        <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'6rem 1.5rem 0rem',gap:'2rem',flexWrap:'wrap'}} m='0 auto'>
+        <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'6rem 1.5rem 0rem',gap:'2rem','@media (width < 1150px)':{flexDirection:"column"}}} m='0 auto'>
         <Box sx={styles.features_content}>
         <Box mb='1rem'>
       <h4 className='section_subheading'>Features</h4>
@@ -123,7 +131,7 @@ const Features = () => {
         </Box>
         </Box>
         <Box sx={styles.features_Img_Banner}>
-      <img src={FeaturesImg} alt='AboutUs' />
+      <img src={FeaturesImg} alt='Feature_img' />
       </Box>  
       </Box>
       </Box>
