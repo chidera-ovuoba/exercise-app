@@ -98,6 +98,12 @@ const featuresData = [
                height: '180px',
                '@media (width < 700px)': {
                 height:'20rem'     
+              },
+               '@media (width < 450px)': {
+                height:'15rem'     
+              },
+               '@media (width < 330px)': {
+                height:'12rem'     
               }
              }
            },
@@ -145,17 +151,17 @@ const Blogs = () => {
     useEffect(() => {
       const container = document.querySelector('.blog_post_wrapper');
       const containerChildren = document.querySelectorAll('.blog_post_wrapper > *');
-       var scrollWidth = container.scrollWidth;
-      var scrollLeft = container.scrollLeft;
-      var width = container.offsetWidth;
 
-      container.addEventListener('touchstart', () => {
-       containerChildren.forEach((item) => {
-         item.classList.remove('touch_scroll');
-      })
-     });
 
-    // container.addEventListener('touchend', () => {
+      if (window.innerWidth >= 700) {
+        
+        container.addEventListener('touchstart', () => {
+          containerChildren.forEach((item) => {
+            item.classList.remove('touch_scroll');
+          })
+        });
+        
+        // container.addEventListener('touchend', () => {
     //   container.style = "scroll-snap-type: none;";
     //   // containerChildren.forEach((item) => {
     //   //   item.style ="scroll-snap-align: unset;"
@@ -179,11 +185,11 @@ const Blogs = () => {
          item.classList.add('touch_scroll');
       })
 
-        container.scrollTo({ left: containerChildren[3].clientLeft * -1, behavior: "smooth" });
+        container.scrollTo({ left: containerChildren[2].clientLeft, behavior: "smooth" });
       // container.children[2].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       console.log('gh')      
     });
-    const observer = new IntersectionObserver(function (entries) {
+    var observer = new IntersectionObserver(function (entries) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
             if (entry.target === container.firstChild) {
@@ -195,15 +201,112 @@ const Blogs = () => {
           } 
       }
     })
-    }, { threshold:[1]});
+  }, { threshold:[1]});
+} else {
+  //     container.addEventListener('touchstart', () => {
+    //   container.style = "scroll-snap-type: x mandatory;";
+    //   containerChildren.forEach((item) => {
+    //     item.style ="scroll-snap-align: start;"
+    //   })
 
-     containerChildren.forEach(item => observer.observe(item))
-     
+    // });
+
+    // container.addEventListener('touchend', () => {
+    //   container.style = "scroll-snap-type: none;";
+    //   containerChildren.forEach((item) => {
+    //     item.style ="scroll-snap-align: unset;"
+    //   })
+  //   // });
+        var currentBlog;
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log(entry.target)
+        currentBlog = entry.target
+        if (entry.target === container.firstChild ) {
+          container.prepend(container.children[container.children.length - 1]);
+          container.scrollLeft = container.clientWidth
+          console.log(container.scrollWidth , container.clientWidth,container.scrollLeft)
+        }
+        if ( entry.target === container.lastChild ) {
+          container.append(container.children[0]);
+          container.scrollLeft = container.scrollWidth - container.clientWidth * 2  
+          console.log(container.scrollWidth , container.clientWidth,container.scrollLeft)
+            // container.scrollWidth - entry.target.offsetWidth 
+        }
+      }
+    })
+      }, { threshold:[1],root:container,rootMargin:'1px'}); 
+  container.scrollBy(container.clientWidth,0)
+//         var lastscroll;
+// container.addEventListener("scroll", function() {
+
+//   if (lastscroll) {
+//     clearTimeout(lastscroll);
+//   } 
+//   lastscroll = setTimeout(function() {
+//      if(container.scrollLeft <= 0) {
+//             container.prepend(container.children[container.children.length - 1]);
+//         }
+//         if (container.scrollWidth - container.scrollLeft - 10 <= container.clientWidth ) {
+//           container.append(container.children[0]);
+//         }
+//   }, 50);
+// });
+//          containerChildren.forEach((item) => {
+//           console.log(item.offsetLeft-container.scrollLeft,item,container.clientWidth)
+//          })
+//         // var activeItem;
+document.querySelector('.button__group').children[0].addEventListener('click', () => {
+      // containerChildren.forEach((item) => {
+        // if (item.offsetLeft - container.scrollLeft > 0 && item.offsetLeft - container.scrollLeft < container.clientWidth && item !== container.firstChild) {
+          // console.log(item.offsetLeft - container.scrollLeft, item)
+          // activeItem = activeItem ? activeItem : item.previousSibling 
+          if(currentBlog){
+            currentBlog.previousSibling.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+          }
+            
+        // }
+        // })
+      });
+        document.querySelector('.button__group').children[1].addEventListener('click', () => {
+        // containerChildren.forEach((item) => {
+        // if (item.offsetLeft - container.scrollLeft > 0 && item.offsetLeft - container.scrollLeft < container.clientWidth && item !== container.lastChild) {
+        //   console.log(item.offsetLeft - container.scrollLeft, item)
+          // activeItem = activeItem ? activeItem : item.nextSibling 
+          if (currentBlog) {
+            currentBlog.nextSibling.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+          }
+        // }
+        // })
+    });
+      
+}
+
+
+containerChildren.forEach(item => observer.observe(item))
      return () => {
     containerChildren.forEach(item=>observer.unobserve(item))
-    
+      document.querySelector('.button__group').children[0].removeEventListener('click', () => {
+      containerChildren.forEach((item) => {
+        if (item.offsetLeft - container.scrollLeft > 0 && item.offsetLeft - container.scrollLeft < container.clientWidth && item !== container.firstChild) {
+          console.log(item.offsetLeft - container.scrollLeft, item)
+          // activeItem = activeItem ? activeItem : item.previousSibling 
+          item.previousSibling.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+        }
+        })
+      });
+        document.querySelector('.button__group').children[1].removeEventListener('click', () => {
+        containerChildren.forEach((item) => {
+        if (item.offsetLeft - container.scrollLeft > 0 && item.offsetLeft - container.scrollLeft < container.clientWidth && item !== container.lastChild) {
+          console.log(item.offsetLeft - container.scrollLeft, item)
+          // activeItem = activeItem ? activeItem : item.nextSibling 
+          item.nextSibling.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+        }
+        })
+    });
     };
-  }, [])
+  }, [activeElement])
 
   return (
       <Box className='features_wrapper'>
@@ -215,14 +318,16 @@ const Blogs = () => {
         </Box>
             <Box className='blog_post_wrapper'>
           {
-            featuresData.map(({ img, id, title }) => (
+              featuresData.map(({ img, id, title }) => (
+              <Box>
               <Box sx={styles.blog} key={title}>
               <img src={img} alt={id}/>
                 <Box sx={{padding:' 0 1rem 1rem'}}>
                   <h3 className='section_heading_3' style={{fontSize:'18px'}}>{title}</h3>
                   <p className='section_paragraph' style={{fontSize:'15px'}}>September 8 ,2023</p>
                 </Box>
-              </Box>
+                </Box>
+                </Box>
             ))
           }
         </Box>

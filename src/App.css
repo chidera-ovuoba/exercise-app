@@ -109,7 +109,7 @@ display: grid;
   scroll-snap-type: x mandatory;
   max-width: 654px;
 }
-.blog_post_wrapper > *{
+.blog_post_wrapper > *>*{
   display: grid;
   margin-right: 2rem;
   gap: 2rem;
@@ -514,18 +514,33 @@ line-height: 2rem;
       /* margin-right:0rem; */
       gap: 2rem;
       /* max-width:400px; */
+      position: relative;
+      scroll-snap-align: none start  ;
     }
+    
+    /* .blog_post_wrapper > * > *:last-of-type {
+      margin-right:0rem;
+    } */
+
   
-    .blog_post_wrapper>div.touch_scroll:nth-child(1) {
-      scroll-snap-align: none;
+    .blog_post_wrapper>div:nth-child(1) {
+      scroll-snap-align: none start ;
     }
   
     .blog_post_wrapper>div:nth-child(2) {
-      scroll-snap-align: none;
+      scroll-snap-align: none start ;
     }
   
     .blog_post_wrapper>div:nth-child(3) {
-      scroll-snap-align: none;
+      scroll-snap-align: none start ;
     }
 }
 
+@media (width < 450px){
+  .blog_post_wrapper > *> *{
+    margin-right: 1rem;
+  }
+  /* .blog_post_wrapper > *:last-of-type{
+    margin-right: 0rem;
+  } */
+}
