@@ -42,19 +42,10 @@ const TeamSection = () => {
     
     container.addEventListener('touchmove', () => {
       setIsTouched(true)
-      container.style = "scroll-snap-type: x mandatory;";
-      containerChildren.forEach((item) => {
-        item.style ="scroll-snap-align: start;"
-      })
-
-    });
+});
 
     container.addEventListener('touchend', () => {
       setIsTouched(false)
-      container.style = "scroll-snap-type: none;";
-      containerChildren.forEach((item) => {
-        item.style ="scroll-snap-align: unset;"
-      })
     });
 
     const observer = new IntersectionObserver(function (entries) {
@@ -63,11 +54,11 @@ const TeamSection = () => {
           setTeamId(entry.target.getAttribute('id'));
           if (entry.target === container.firstChild) {
             entry.target.insertAdjacentElement("beforebegin", entry.target.nextSibling.nextSibling);
-          container.scrollLeft += entry.target.clientWidth;
+          container.scrollLeft = entry.target.clientWidth;
           } 
           if (entry.target === container.lastChild) {
             entry.target.insertAdjacentElement("afterend", entry.target.previousSibling.previousSibling);
-          container.scrollLeft -= entry.target.clientWidth;
+            container.scrollLeft = entry.target.clientWidth;
           } 
       }
     })
@@ -76,7 +67,8 @@ const TeamSection = () => {
      containerChildren.forEach(item=>observer.observe(item))
 
        return () => {
-       clearInterval(interval);
+         clearInterval(interval);
+          containerChildren.forEach(item=>observer.unobserve(item))
     };
   }, [isTouched,teamId])
 
@@ -86,7 +78,7 @@ const TeamSection = () => {
   }
 
       const styles = {
-    features_content: {
+    teams_content: {
       flex: '1',
       width:'40%',
       display: 'grid',
@@ -96,15 +88,10 @@ const TeamSection = () => {
         minWidth:'200px'
       }
     },
-    features_Img_Banner: {
+    teams_Img_Banner: {
       flex: '1',
       display: 'grid',
       placeItems: 'center',
-      // placeItems: 'flex-end',
-      // '@media (width < 1263px)': {
-      //   flex:'unset', 
-      // },
-      
     },
     buttonGroup:{
       alignItems: 'center',
@@ -123,7 +110,7 @@ const TeamSection = () => {
   return (
     <>
         <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'15rem 1.5rem',gap:'3rem',flexWrap:'wrap','@media (width < 1263px)':{justifyContent:'center'}}} m='0 auto' className='section_wrapper'>
-        <Box sx={styles.features_content}>
+        <Box sx={styles.teams_content}>
         <Box mb='1rem'>
       <h4 className='section_subheading'>Our Perfect Team</h4>
       <h2 className='section_heading'>LEARN FROM THE BEST</h2>
@@ -132,7 +119,7 @@ const TeamSection = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, iusto, soluta dolores sapiente necessitatibus exercitationem id obcaecati at animi.
           </p>
         </Box>
-        <Box sx={styles.features_Img_Banner}>
+        <Box sx={styles.teams_Img_Banner}>
         <Box  className='carouselWrapper'>
         {teamData.map(({id,img})=>(
           <img src={img} alt={id} key={id} id={id} />

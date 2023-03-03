@@ -10,15 +10,13 @@ import FitnessCalulator from './pages/FitnessCalulator';
 const App = () => {
   return (
     <Box className='bg_smoke'>
-    <Box>
       <Navbar/>
       <Routes>
         <Route path='/' exact element={<Home />} />
          <Route path='/exercise/:id' element={<ExerciseDetail/>} />
-         <Route path='/fitnessCalculator' element={< FitnessCalulator/>}></Route>     
+         <Route path='fitnesscalculator'  element={<FitnessCalulator/>}></Route>     
        </Routes>
       <Footer/>
-    </Box>
     </Box>
   )
 }

@@ -1,14 +1,11 @@
 import React from 'react'
-import { Box, Typography, Stack } from '@mui/material';
-import Logo from '../assets/images/Logo-1.png';
+import { Box, Stack } from '@mui/material';
+import Logo from '../assets/icons/logo.png';
 const Footer = () => {
   return (
-    <Box mt='80px' bgColor='#fff3f4'>
-      <Stack gap='40px' alignItems='center' px='40px' pt='24px'>
-        <img src={Logo} alt="logo" width='200px' height='40px' />
-        <Typography variant='h3' pb='40px' mt='40px'>
-        
-        </Typography>
+    <Box className='section_wrapper' sx={{padding:'4rem 0'}}>
+        <Stack alignItems='center' >
+        <img src={Logo} alt="logo" width='150px' height='150px' />
       </Stack>
     </Box>
   )

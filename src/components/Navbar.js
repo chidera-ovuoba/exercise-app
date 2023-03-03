@@ -94,7 +94,7 @@ const Navbar = () => {
       m='0 auto'
     >
 
-      <img src={Logo} alt="logo" width='130px' height='130px' style={{ marginTop: '2rem' }} />
+      <img src={Logo} alt="logo" width='100px' height='100px' />
 
       <Stack direction='row' gap='40px' >
         <Stack direction='row' className={`menu_nav-wrapper ${navBgState ? 'openNav' : ''}`} sx={{background: `${navBgState ? '#0000009f' : ''}`}}>
@@ -104,7 +104,7 @@ const Navbar = () => {
           <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Exercises</a>
           <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Testimonial</a>
           <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Pricing</a>
-          <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Fitness Calculator</a>
+          <Link to="fitnesscalculator"  style={{ textDecoration: 'none', color: '#fff' }}>Fitness Calculator</Link>
             <CancelIcon sx={styles.cancelIcon} className='close-icon' />
           </Stack>
             <Stack direction='row' gap='20px' flexWrap='wrap' alignItems='center' justifySelf='flex-end' pt='30px' sx={{'@media (width < 960px)':{display:'flex'},display:'none'}}>
