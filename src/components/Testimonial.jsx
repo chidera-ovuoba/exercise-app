@@ -186,7 +186,7 @@ const Testimonial = () => {
     }
 
     return (
-        <Box className='features_wrapper'>
+        <Box className='features_wrapper' id='testimonial_page'>
         <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'6rem 1.5rem 0rem',gap:'2rem','@media (width < 1200px)':{flexDirection:'column-reverse'}}} m='0 auto'>
         <Box sx={styles.testimonial_Img_Banner}>
       <img src={testimonialImg} alt='Testimonial_banner' />

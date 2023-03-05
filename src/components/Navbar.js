@@ -102,8 +102,8 @@ const Navbar = () => {
         <Stack direction='row' gap='40px'>
           <Link to='/' style={{ textDecoration: 'none', color: '#fff' }}>Home</Link>
           <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Exercises</a>
-          <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Testimonial</a>
-          <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Pricing</a>
+          <a href="#testimonial_page" style={{ textDecoration: 'none', color: '#fff' }}>Testimonial</a>
+          <a href="#pricing_page" style={{ textDecoration: 'none', color: '#fff' }}>Pricing</a>
           <Link to="fitnesscalculator"  style={{ textDecoration: 'none', color: '#fff' }}>Fitness Calculator</Link>
             <CancelIcon sx={styles.cancelIcon} className='close-icon' />
           </Stack>

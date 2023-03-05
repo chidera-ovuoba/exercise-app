@@ -83,7 +83,7 @@ const BMIHeader = () => {
   return (
     <>
 
-        <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0rem 1.5rem',gap:'2rem',height:'90vh','@media (width < 1050px)':{flexDirection:'column',padding:'0 0.5rem'}}} m='0 auto'>
+        <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0rem 1.5rem',height:'90vh','@media (width < 1050px)':{flexDirection:'column',padding:'0 0.5rem'}}} m='0 auto'>
         <Box sx={styles.testimonial_content}>
       <h4 className='section_subheading'>Calculator</h4>
       <h2 className='section_heading'>BMI COUNT</h2>

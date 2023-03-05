@@ -286,18 +286,20 @@ line-height: 30px;
 
 #outlined-basic,#demo-simple-select{
   width:10rem;
-  /* max-width: 12rem; */
   min-width: 200px;
-  /* color: #fff; */
-  /* outline:2px solid #ed0202; */
+  color:#fff;
 }
 #outlined-basic + fieldset,
-#demo-simple-select + fieldset {
+#demo-simple-select~fieldset {
   border: 2px solid #fff;
-  /* background:#fff; */
 }
-#outlined-basic:focus + fieldset,
-#demo-simple-select:focus + fieldset {
+
+#demo-simple-select{
+background-color: #ffffff67;
+border-bottom: 2px solid #fff;
+}
+
+#outlined-basic:focus + fieldset {
   border: 2px solid #d32f2f;
   /* background:#fff; */
 }

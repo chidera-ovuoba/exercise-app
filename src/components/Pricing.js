@@ -35,7 +35,7 @@ const pricingData = [
 
 const Pricing = () => {
   return (
-       <Box sx={{width:'90%',padding:'15rem 1.5rem',gap:'3rem',textAlign:'center',display:'block'}} m='0 auto' className='section_wrapper'>
+       <Box sx={{width:'90%',padding:'15rem 1.5rem',gap:'3rem',textAlign:'center',display:'block'}} m='0 auto' className='section_wrapper' id='pricing_page'>
         <Box mb='3rem'>
       <h4 className='section_subheading'>Pricing</h4>
       <h2 className='section_heading'>LET'S MAKE A PLAN</h2>

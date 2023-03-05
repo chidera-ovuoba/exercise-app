@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
-import { Box,TextField,Typography,Select,InputLabel,MenuItem, Button} from '@mui/material';
-import { fetchData,bmioptions } from '../utils/fetchData';
+import { Box,TextField,Typography,Select,InputLabel,MenuItem, Button, GlobalStyles, Stack, Chip} from '@mui/material';
+import { fetchData } from '../utils/fetchData';
 const BMIComponent = () => {
     const [bmiParamsState, setBmiParamsState] = useState({});
     const [bmiState, setBmiState] = useState({});
@@ -11,166 +11,150 @@ const BMIComponent = () => {
     const [idealWeightParams, setIdealWeightParams] = useState({});
     const [idealWeight, setIdealWeight] = useState({});
     const [macroCalculatorParams, setMacroCalculatorParams] = useState({});
-     const [macroCalculator, setMacroCalculator] = useState({});
-    // useEffect(() => {
-    //     const fetchBmiData = async() => {
-    //         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bmi?age=${bmiParamsState?.age}&weight=${bmiParamsState?.weight}&height=${bmiParamsState?.height}`, bmioptions);
-    //         console.log(data.data);
-    //         setBmiState(data.data);
-    //     } 
-    //     fetchBmiData();
-    // },[bmiParamsState])
+    const [macroCalculator, setMacroCalculator] = useState({});
 
-    // useEffect(() => {
-    //     // console.log('hi');
-    //     // console.log(bodyFatParams);
-    //     const fetchBodyFatData = async() => {
-    //         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bodyfat?age=${bodyFatParams?.age}&gender=${bodyFatParams?.gender}&weight=${bodyFatParams?.weight}&height=${bodyFatParams?.height}&neck=${bodyFatParams?.neck}&waist=${bodyFatParams?.waist}&hip=${bodyFatParams?.hip}`, bmioptions);
-    //         console.log(data.data);
-    //         setBodyFat(data.data);
-    //     } 
-    //     fetchBodyFatData();
-    // }, [bodyFatParams.gender])
+    const handleBmiSubmit =async (e) => {
+        e.preventDefault();
+        try {
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bmi?${Object.entries(bmiParamsState).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            setBmiState(data.data);
+        } catch (err) {
+            console.log(err.message)
+        }
+      }
+    const handleBodyFatSubmit =async (e) => {
+        e.preventDefault();
+        try {
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bodyfat?${Object.entries(bodyFatParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            setBodyFat(data.data);
+        } catch (err) {
+            console.log(err.message)
+        }
+      }
+    const handleDailyCalorieSubmit =async (e) => {
+        e.preventDefault();
+        try {
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/dailycalorie?${Object.entries(dailyCalorieParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            setDailyCalorie(data.data)
+        } catch (err) {
+            console.log(err.message)
+        }
+      }
+    const handleIdealWeightSubmit =async (e) => {
+        e.preventDefault();
+        try {
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/idealweight?${Object.entries(idealWeightParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            setIdealWeight(data.data);
+        } catch (err) {
+            console.log(err.message)
+        }
+      }
+    const handleMacroCalculatorSubmit =async (e) => {
+        e.preventDefault();
+        try {
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/macrocalculator?${Object.entries(macroCalculatorParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            setMacroCalculator(data.data);
+        } catch (err) {
+            console.log(err.message)
+        }
+      }
+   
+
+
+
+const minMax = {
+    ageProps: {
+       'min':'0',
+       'max':'80'
+    },
+    weightProps: {
+       'min':'40',
+       'max':'160'
+    },
+    heightProps: {
+       'min':'130',
+       'max':'230'
+    },
+    neckProps: {
+       'min':'20',
+       'max':'80'
+    },
+    waistHipProps: {
+       'min':'40',
+       'max':'130'
+    },
     
-//      useEffect(() => {
-//         const fetchdailyCalorieData = async() => {
-//             const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/dailycalorie?age=${dailyCalorieParams?.age}&gender=${dailyCalorieParams?.gender}&weight=${dailyCalorieParams?.weight}&height=${dailyCalorieParams?.height}&activitylevel=${dailyCalorieParams?.activity_level}`, bmioptions);
-//             console.log(data.data);
-//             setDailyCalorie(data.data);
-//         } 
-//         fetchdailyCalorieData();
-//    },[dailyCalorieParams.gender])
-
-// useEffect(() => {
-//         const fetchidealWeightData = async() => {
-//             const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/idealweight?gender=${idealWeightParams?.gender}&height=${idealWeightParams?.height}`, bmioptions);
-//             console.log(data.data);
-//             setIdealWeight(data.data);
-//         } 
-//         fetchidealWeightData();
-//    },[idealWeightParams.gender])
-
-//  useEffect(() => {
-//      const fetchmacroCalculatorData = async () => {
-//         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/macrocalculator?age=${macroCalculatorParams?.age}&gender=${macroCalculatorParams?.gender}&weight=${macroCalculatorParams?.weight}&height=${macroCalculatorParams?.height}&activitylevel=${macroCalculatorParams?.activity_level}&goal=${macroCalculatorParams.goal}`,bmioptions);
-//             console.log(data.data);
-//             setMacroCalculator(data.data);
-//         } 
-//         fetchmacroCalculatorData();
-//    },[macroCalculatorParams.gender])
-
-
-//    useEffect(() => {
-//      const fetchmacroCalculatorData = async () => {
-//         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/activities?intensitylevel=1`,bmioptions);
-//          console.log(data);
-//         //  console.log(data.data.map((item) => {
-//         //      return item;
-//         //  }))
-//             // setMacroCalculator(data.data);
-//         } 
-//         fetchmacroCalculatorData();
-//    }, [])
-    
-    //   useEffect(() => {
-    //  const fetchmacroCalculatorData = async () => {
-    //     const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/burnedcalorie?activityid=bi_1&activitymin=25&weight=75`,bmioptions);
-    //      console.log(data.data);
-    //     //  console.log(data.data.map((item) => {
-    //     //      return item.activity;
-    //     //  }))
-    //         // setMacroCalculator(data.data);
-    //     } 
-    //     fetchmacroCalculatorData();
-    //   }, [])
-    
-
-//         useEffect(() => {
-//      const fetchmacroCalculatorData = async () => {
-//         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/food?foodid=SR25_1_1`,bmioptions);
-//          console.log(data.data);
-//         //  console.log(data.data.map((item) => {
-//         //      return item.activity;
-//         //  }))
-//             // setMacroCalculator(data.data);
-//         } 
-//         fetchmacroCalculatorData();
-//    },[])
-
-    
-    //     useEffect(() => {
-    //  const fetchmacroCalculatorData = async () => {
-    //     const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/foodids?subtablename=SR25_1`,bmioptions);
-    //      console.log(data.data);
-    //     //  console.log(data.data.map((item) => {
-    //     //      return item.activity;
-    //     //  }))
-    //         // setMacroCalculator(data.data);
-    //     } 
-    //     fetchmacroCalculatorData();
-    //     }, [])
-    
-//       useEffect(() => {
-//      const fetchmacroCalculatorData = async () => {
-//         const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/foodids/subtablenames?tablename=SR25`,bmioptions);
-//          console.log(data.data);
-//          console.log(data.data.map((item) => {
-//              return item.subDataType;
-//          }))
-//             // setMacroCalculator(data.data);
-//         } 
-//         fetchmacroCalculatorData();
-//    },[])
-
+ }
     
   return (
-      <Box sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex',flexDirection:'column' }}>
-          <Box sx={{width:'100%',gap:'2rem',padding:'2rem 4rem'}} className='section_wrapper'>
-          <Box sx={{flex:'0.6'}}>
-          <Typography>BMI</Typography>
-          <Typography>{bmiState?.bmi}</Typography>
+      <Box sx={{ alignItems: 'center', justifyContent: 'center', dispay: 'flex',flexDirection:'column' }}>
+          <GlobalStyles styles={{
+              'div > .MuiInputLabel-root.Mui-focused': { color: '#d32f2f' },
+          }} />
+
+          {/* //=========================          bmi              ================*/}
+
+          <Box sx={{width:'100%',gap:'2rem',padding:'4rem',borderBottom:'4px solid #fff','@media (width < 700px)':{padding:'2rem'}}} className='section_wrapper'>
+          <Box sx={{flex:'0.6',minWidth:"150px"}}>
+          <h2 style={{fontSize:'25px'}} className='section_heading'>BMI(Body Mass Index)</h2>
+          <Stack direction="row" spacing={2} mt='10px'>
+          <h4 style={{fontSize:'20px',letterSpacing:'0.2em'}} className='section_subheading'>{bmiState?.bmi || 0}</h4>
+          <Chip label={bmiState?.health || 'health'} color='error' variant='outlined'/>
+          </Stack>
           </Box>
-          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}>
+          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}} component="form" onSubmit={(e)=>{handleBmiSubmit(e)}}>
           <Box sx={{display:'flex',flexWrap:'wrap',gap:'1rem',justifyContent:'center',alignItems:'center'}}>
-          <TextField id="outlined-basic" label="age" variant="outlined" value={bmiParamsState.age} onChange={(e) => setBmiParamsState({ ...bmiParamsState, age: e.target.value })} color='error' focused />
-           <TextField id="outlined-basic" label="weight" variant="outlined" value={bmiParamsState.weight} onChange={(e) => setBmiParamsState({ ...bmiParamsState, weight: e.target.value })} />
-          <TextField id="outlined-basic" label="height" variant="outlined" value={bmiParamsState.height} onChange={(e) => setBmiParamsState({ ...bmiParamsState, height: e.target.value })} />
+          <TextField id="outlined-basic" label="age" variant="outlined" inputProps={minMax.ageProps}  value={bmiParamsState.age || ''} onChange={(e) => setBmiParamsState({ ...bmiParamsState, age: e.target.value })}  type='number' />
+           <TextField id="outlined-basic" label="weight (kg)" variant="outlined" inputProps={minMax.weightProps} value={bmiParamsState.weight || ''} onChange={(e) => setBmiParamsState({ ...bmiParamsState, weight: e.target.value })} type='number' />
+          <TextField id="outlined-basic" label="height (cm)" variant="outlined" inputProps={minMax.heightProps} value={bmiParamsState.height || ''} onChange={(e) => setBmiParamsState({ ...bmiParamsState, height: e.target.value })} type='number' />
           </Box>
        <Button sx={{p:'10px 20px', borderRadius:'20px',background:'#ed0202',color:'white',fontFamily:"'Josefin Sans'",letterSpacing:'0.14em','&:hover':{
            background:'#818181b6'
-           }}}>calculate</Button>
+           }}} type='submit'>calculate</Button>
         </Box>
           </Box>
 
 
 
           
-        <Box sx={{width:'100%',gap:'2rem',background:'white',padding:'2rem 4rem'}} className='section_wrapper'>
-          <Box sx={{flex:'0.6'}}>
-          <Typography>BMI</Typography>
-          <Typography>{bodyFat?.['Body Fat Mass']}</Typography>
+        <Box sx={{width:'100%',gap:'2rem',padding:'4rem',borderBottom:'4px solid #fff','@media (width < 700px)':{padding:'2rem'}}} className='section_wrapper'>
+          <Box sx={{flex:'0.6',minWidth:"150px"}}>
+          <h2 style={{fontSize:'25px'}} className='section_heading'>Body Fat Mass</h2>
+          <Stack direction="row" spacing={2} mt='10px'>
+          <h4 style={{fontSize:'20px',letterSpacing:'0.2em'}} className='section_subheading'>{bodyFat?.['Body Fat Mass'] || 0}</h4>
+          <Chip label={bodyFat?.['Body Fat Category'] || 'health'} color='error' variant='outlined'/>
+          </Stack>
           </Box>
-          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}>
+          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}
+           component="form" onSubmit={(e)=>{handleBodyFatSubmit(e)}}
+          >
           <Box sx={{display:'flex',flexWrap:'wrap',gap:'1rem',justifyContent:'center',alignItems:'center'}}>
-           <TextField id="outlined-basic" label="age" variant="outlined" value={bodyFatParams.age} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, age: e.target.value }) } />
-            <TextField id="outlined-basic" label="weight" variant="outlined" value={bodyFatParams.weight} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, weight: e.target.value }) } />
-           <TextField id="outlined-basic" label="height" variant="outlined" value={bodyFatParams.height} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, height: e.target.value }) } />
-           <TextField id="outlined-basic" label="neck" variant="outlined" value={bodyFatParams.neck} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, neck: e.target.value }) } />
-          <TextField id="outlined-basic" label="waist" variant="outlined" value={bodyFatParams.waist} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, waist: e.target.value }) } />
-          <TextField id="outlined-basic" label="hip" variant="outlined" value={bodyFatParams.hip} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, hip: e.target.value }) } />
+           <TextField id="outlined-basic" label="age" variant="outlined" value={bodyFatParams.age || ''} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, age: e.target.value }) } inputProps={minMax.ageProps} type='number'  />
+           
+            <TextField id="outlined-basic" label="weight (kg)" variant="outlined" value={bodyFatParams.weight || ''} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, weight: e.target.value }) } inputProps={minMax.weightProps} type='number' />
+            
+           <TextField id="outlined-basic" label="height (cm)" variant="outlined" value={bodyFatParams.height || ''} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, height: e.target.value }) } inputProps={minMax.heightProps} type='number' />
+           
+           <TextField id="outlined-basic" label="neck (cm)" variant="outlined" value={bodyFatParams.neck || ''} onChange={(e) => setBodyFatParams({ ...bodyFatParams, neck: e.target.value }) } inputProps={minMax.neckProps} type='number' />
+           
+          <TextField id="outlined-basic" label="waist (cm)" variant="outlined" value={bodyFatParams.waist || ''} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, waist: e.target.value }) } inputProps={minMax.waistHipProps} type='number' />
+          
+          <TextField id="outlined-basic" label="hip (cm)" variant="outlined" value={bodyFatParams.hip || ''} onChange={ (e) => setBodyFatParams({ ...bodyFatParams, hip: e.target.value }) } inputProps={minMax.waistHipProps} type='number' />
             <Select
             displayEmpty
             id="demo-simple-select"
             value={bodyFatParams?.gender || ''}
-            label="gender"
+            variant='filled'
+            label="Gender"
             onChange={(e)=>setBodyFatParams({...bodyFatParams,gender:e.target.value })}
             renderValue={(selected) => {
             if (selected?.length === 0) {
-              return <p>Gender</p>;
+              return <em>Gender</em>;
             }
 
             return selected
             }}
+            color='error'
             >
             <MenuItem value={'male'}>Male</MenuItem>
             <MenuItem value={'female'}>Female</MenuItem>
@@ -178,32 +162,36 @@ const BMIComponent = () => {
           </Box>
           <Button sx={{p:'10px 20px', borderRadius:'20px',background:'#ed0202',color:'white',fontFamily:"'Josefin Sans'",letterSpacing:'0.14em','&:hover':{
            background:'#818181b6'
-           }}}>calculate</Button>
+           }}} type='submit'>calculate</Button>
           </Box>
           </Box>
           
           
           {/* //========================= daily calorire================*/}
           
-           <Box sx={{width:'100%',gap:'2rem',background:'white',padding:'2rem 4rem'}} className='section_wrapper'>
-          <Box sx={{flex:'0.6'}}>
-          <Typography>BMI</Typography> 
-          <Typography>{dailyCalorie?.BMR}</Typography>
+           <Box sx={{width:'100%',gap:'2rem',padding:'4rem',borderBottom:'4px solid #fff','@media (width < 700px)':{padding:'2rem'}}} className='section_wrapper'>
+          <Box sx={{flex:'0.6',minWidth:"150px"}}>
+          <h2 style={{fontSize:'25px'}} className='section_heading'>Daily Calorie</h2>
+          <h4 style={{fontSize:'20px',letterSpacing:'0.2em',marginTop:'10px'}} className='section_subheading'>{dailyCalorie?.BMR || 0}</h4> 
            </Box>
-          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}>
+          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}
+          component="form" onSubmit={(e)=>{handleDailyCalorieSubmit(e)}}
+          >
           <Box sx={{display:'flex',flexWrap:'wrap',gap:'1rem',justifyContent:'center',alignItems:'center'}}>
-        <TextField id="outlined-basic" label="height" variant="outlined" value={dailyCalorieParams.height} onChange={ (e) => setDailyCalorieParams({ ...dailyCalorieParams, height: e.target.value }) } />
-           <TextField id="outlined-basic" label="age" variant="outlined" value={dailyCalorieParams.neck} onChange={ (e) => setDailyCalorieParams({ ...dailyCalorieParams, age: e.target.value }) } />
-          <TextField id="outlined-basic" label="weight" variant="outlined" value={dailyCalorieParams.weight} onChange={ (e) => setDailyCalorieParams({ ...dailyCalorieParams, weight: e.target.value }) } />
+          <TextField id="outlined-basic" label="age" variant="outlined" value={dailyCalorieParams.age || ''} onChange={(e) => setDailyCalorieParams({ ...dailyCalorieParams, age: e.target.value }) } inputProps={minMax.ageProps} type='number' />
+          <TextField id="outlined-basic" label="weight (kg)" variant="outlined" value={dailyCalorieParams.weight || ''} onChange={ (e) => setDailyCalorieParams({ ...dailyCalorieParams, weight: e.target.value }) }  inputProps={minMax.weightProps} type='number'/>
+        <TextField id="outlined-basic" label="height (cm)" variant="outlined" value={dailyCalorieParams.height || ''} onChange={ (e) => setDailyCalorieParams({ ...dailyCalorieParams, height: e.target.value }) }  inputProps={minMax.heightProps} type='number'/>
            <Select
             id="demo-simple-select"
             value={dailyCalorieParams?.gender || ''}
             label="gender"
             displayEmpty
+            variant='filled'
+            color='error'
             onChange={(e)=>setDailyCalorieParams({...dailyCalorieParams,gender:e.target.value })}
             renderValue={(selected) => {
             if (selected?.length === 0) {
-              return <p>Gender</p>;
+              return <em>Gender</em>;
             }
 
             return selected
@@ -215,13 +203,15 @@ const BMIComponent = () => {
                   
            <Select
             id="demo-simple-select"
-            value={dailyCalorieParams?.activity_level || ''}
+            value={dailyCalorieParams?.activitylevel || ''}
             label="Activity Level"
             displayEmpty
-            onChange={(e)=>setDailyCalorieParams({...dailyCalorieParams,activity_level:e.target.value })}
+            variant='filled'
+            color='error'
+            onChange={(e)=>setDailyCalorieParams({...dailyCalorieParams,activitylevel:e.target.value })}
             renderValue={(selected) => {
             if (selected?.length === 0) {
-              return <p>Activity Level</p>;
+              return <em>Activity Level</em>;
             }
 
             return selected
@@ -238,30 +228,34 @@ const BMIComponent = () => {
            </Box>
         <Button sx={{p:'10px 20px', borderRadius:'20px',background:'#ed0202',color:'white',fontFamily:"'Josefin Sans'",letterSpacing:'0.14em','&:hover':{
            background:'#818181b6'
-           }}}>calculate</Button>
+           }}} type='submit'>calculate</Button>
         </Box>
           </Box>
 
 
           {/*========================== ideal Weight===========*/}
 
-          <Box sx={{width:'100%',gap:'2rem',background:'white',padding:'2rem 4rem'}} className='section_wrapper'>
-          <Box sx={{flex:'0.6'}}>
-          <Typography>BMI</Typography>
-          <Typography>{idealWeight?.Devine}</Typography>
+          <Box sx={{width:'100%',gap:'2rem',padding:'4rem',borderBottom:'4px solid #fff','@media (width < 700px)':{padding:'2rem'}}} className='section_wrapper'>
+          <Box sx={{flex:'0.6',minWidth:"150px"}}>
+          <h2 style={{fontSize:'25px'}} className='section_heading'>Ideal Weight</h2>
+          <h4 style={{fontSize:'20px',letterSpacing:'0.2em',marginTop:'10px'}} className='section_subheading'>{idealWeight?.Devine|| 0}</h4> 
           </Box>
-          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}>
+          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}
+            component="form" onSubmit={(e)=>{handleIdealWeightSubmit(e)}}
+          >
           <Box sx={{display:'flex',flexWrap:'wrap',gap:'1rem',justifyContent:'center',alignItems:'center'}}> 
-          <TextField id="outlined-basic" label="height" variant="outlined" value={idealWeightParams.height} onChange={ (e) => setIdealWeightParams({ ...idealWeightParams, height: e.target.value }) } />
+          <TextField id="outlined-basic" label="height (cm)" variant="outlined" value={idealWeightParams.height || ''} onChange={ (e) => setIdealWeightParams({ ...idealWeightParams, height: e.target.value }) }  inputProps={minMax.heightProps} type='number'/>
            <Select
             id="demo-simple-select"
             value={idealWeightParams?.gender || ''}
             label="Gender"
             displayEmpty
+            variant='filled'
+            color='error'
             onChange={(e)=>setIdealWeightParams({...idealWeightParams,gender:e.target.value })}
             renderValue={(selected) => {
             if (selected?.length === 0) {
-              return <p>Gender</p>;
+              return <em>Gender</em>;
             }
 
             return selected
@@ -274,7 +268,7 @@ const BMIComponent = () => {
            </Box>
        <Button sx={{p:'10px 20px', borderRadius:'20px',background:'#ed0202',color:'white',fontFamily:"'Josefin Sans'",letterSpacing:'0.14em','&:hover':{
            background:'#818181b6'
-           }}}>calculate</Button>
+           }}} type='submit'>calculate</Button>
         </Box>
           </Box>
 
@@ -282,25 +276,29 @@ const BMIComponent = () => {
           
           {/*==================== macroCalculator==============================*/}
           
-          <Box sx={{width:'100%',gap:'2rem',background:'white',padding:'2rem 4rem'}} className='section_wrapper'>
-          <Box sx={{flex:'0.6'}}>
-          <Typography>BMI</Typography>
-          <Typography>{macroCalculator?.calorie}</Typography>
+          <Box sx={{width:'100%',gap:'2rem',padding:'4rem',borderBottom:'4px solid #fff','@media (width < 700px)':{padding:'2rem'}}} className='section_wrapper'>
+          <Box sx={{flex:'0.6',minWidth:"150px"}}>
+          <h2 style={{fontSize:'25px'}} className='section_heading'>Calorie To Be Burnt</h2>
+          <h4 style={{fontSize:'20px',letterSpacing:'0.2em',marginTop:'10px'}} className='section_subheading'>{macroCalculator?.calorie || 0}</h4> 
           </Box>
-          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}>
+          <Box sx={{flex:'1',display:'flex',gap:'1rem',justifyContent:'center',flexDirection:'column',alignItems:'center'}}
+            component="form" onSubmit={(e)=>{handleMacroCalculatorSubmit(e)}}
+          >
           <Box sx={{display:'flex',flexWrap:'wrap',gap:'1rem',justifyContent:'center',alignItems:'center'}}> 
-            <TextField id="outlined-basic" label="age" variant="outlined" value={macroCalculatorParams.age} onChange={ (e) => setMacroCalculatorParams({ ...macroCalculatorParams, age: e.target.value }) } />
-            <TextField id="outlined-basic" label="weight" variant="outlined" value={macroCalculatorParams.weight} onChange={ (e) => setMacroCalculatorParams({ ...macroCalculatorParams, weight: e.target.value }) } />
-              <TextField id="outlined-basic" label="height" variant="outlined" value={macroCalculatorParams.height} onChange={(e) => setMacroCalculatorParams({ ...macroCalculatorParams, height: e.target.value })} />
+            <TextField id="outlined-basic" label="age" variant="outlined" value={macroCalculatorParams.age || ''} onChange={ (e) => setMacroCalculatorParams({ ...macroCalculatorParams, age: e.target.value }) } inputProps={minMax.ageProps} type='number'/>
+            <TextField id="outlined-basic" label="weight (kg)" variant="outlined" value={macroCalculatorParams.weight || ''} onChange={ (e) => setMacroCalculatorParams({ ...macroCalculatorParams, weight: e.target.value }) } inputProps={minMax.weightProps} type='number'/>
+              <TextField id="outlined-basic" label="height (cm)" variant="outlined" value={macroCalculatorParams.height || ''} onChange={(e) => setMacroCalculatorParams({ ...macroCalculatorParams, height: e.target.value })} inputProps={minMax.heightProps} type='number'/>
            <Select
             id="demo-simple-select"
             value={macroCalculatorParams?.gender || ''}
             label="Gender"
             displayEmpty
+            variant='filled'
+            color='error'
             onChange={(e)=>setMacroCalculatorParams({...macroCalculatorParams,gender:e.target.value })}
             renderValue={(selected) => {
             if (selected?.length === 0) {
-              return <p>Gender</p>;
+              return <em>Gender</em>;
             }
 
             return selected
@@ -312,13 +310,15 @@ const BMIComponent = () => {
                   
            <Select
             id="demo-simple-select"
-            value={macroCalculatorParams?.activity_level || ''}
+            value={macroCalculatorParams?.activitylevel || ''}
             label="Activity Level"
             displayEmpty
-            onChange={(e)=>setMacroCalculatorParams({...macroCalculatorParams,activity_level:e.target.value })}
+            variant='filled'
+            color='error'
+            onChange={(e)=>setMacroCalculatorParams({...macroCalculatorParams,activitylevel:e.target.value })}
             renderValue={(selected) => {
             if (selected?.length === 0) {
-              return <p>Activity Level</p>;
+              return <em>Activity Level</em>;
             }
 
             return selected
@@ -337,10 +337,12 @@ const BMIComponent = () => {
             value={macroCalculatorParams?.goal || ''}
             label="Goal"
             displayEmpty
+            variant='filled'
+            color='error'
             onChange={(e)=>setMacroCalculatorParams({...macroCalculatorParams,goal:e.target.value })}
             renderValue={(selected) => {
             if (selected?.length === 0) {
-              return <p>Goal</p>;
+              return <em>Goal</em>;
             }
 
             return selected
@@ -357,7 +359,7 @@ const BMIComponent = () => {
   </Box>
     <Button sx={{p:'10px 20px', borderRadius:'20px',background:'#ed0202',color:'white',fontFamily:"'Josefin Sans'",letterSpacing:'0.14em','&:hover':{
            background:'#818181b6'
-           }}}>calculate</Button>
+           }}} type='submit'>calculate</Button>
           </Box>
           </Box>
 

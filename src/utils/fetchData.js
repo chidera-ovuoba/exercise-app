@@ -30,8 +30,8 @@ export const bmioptions = {
     'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
   }
 };
-export const fetchData = async (url, option) => {
-    const response = await fetch(url, option);
+export const fetchData = async (url) => {
+    const response = await fetch(url, bmioptions);
     const data = await response.json();
     return data;
 }
