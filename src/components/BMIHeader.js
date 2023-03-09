@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react';
 import BMIHeaderImg from '../assets/images/project_dark.webp'
 
@@ -9,7 +9,7 @@ import BMIHeaderImg from '../assets/images/project_dark.webp'
             flex:'0.9',
             '@media (width < 1050px)':{
               width: '100%',
-              maxWidth:'400px',
+              maxWidth:'500px',
               height:'35%',
               display:'flex',
               flexDirection:'column',
@@ -26,72 +26,25 @@ import BMIHeaderImg from '../assets/images/project_dark.webp'
               }            
             },
         },
-        testimonial_Img_Banner: {
-            flex: '1',
-            display: 'grid ',
-            position: 'relative',
-            placeItems: 'flex-start',
-            minWidth: '400px',
-            width: '18rem',
-            height: '50rem',
-            '& > img': {
-                maxWidth: '37rem',
-                position: 'absolute',
-                height: 'calc(100% + 13rem)',
-                bottom: '0rem',
-                '@media (width < 1450px)': {
-                  width: '100%',
-
-              },
-                '@media (width < 1200px)': {
-                    position: 'static',
-                    height: 'inherit',
-                    placeSelf:'center',
-                    width: 'inherit',
-                },
-            },
-          '@media (width < 1200px)': {
-            width: '35rem',
-            
-          },
-          '@media (width < 650px)': {
-          width:'20rem',
-          minWidth: '200px',
-          height: '35rem',
-          },
-          '@media (width < 380px)': {
-          width:'15rem',
-          height: '30rem',
-          },
-        },
-    buttonGroup:{
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      gap: '1.5rem',
-      marginTop:'2rem',
-      '& > *': {
-        width: '0.8rem',
-        borderRadius: '50%',
-        height: '0.8rem',
-        cursor:'pointer',
-      }
-    }
+        
 }
     
+// <Box sx={styles.testimonial_content}>
+// <h4 className='section_subheading'>Calculator</h4>
+// <h2 className='section_heading'>BMI COUNT</h2>
+// <p className="section_paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore voluptas voluptates, repellendus, dolorum nobis, veniam quae voluptatum consequatur autem quasi omnis eligendi non et delectus?</p>
+//   </Box>
 const BMIHeader = () => {
   return (
     <>
-
-        <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0rem 1.5rem',height:'90vh','@media (width < 1050px)':{flexDirection:'column',padding:'0 0.5rem'}}} m='0 auto'>
-        <Box sx={styles.testimonial_content}>
-      <h4 className='section_subheading'>Calculator</h4>
-      <h2 className='section_heading'>BMI COUNT</h2>
-        <p className="section_paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In reprehenderit, atque minus optio odio culpa saepe commodi architecto perferendis quis!</p>
-          </Box>
-          <Box sx={{ width: '55%', height: '95%',alignSelf:'flex-end',maxWidth:'500px','@media (width < 1050px)':{width:'100%', height: '65%',alignSelf:'center', display: 'flex',justifyContent: 'center','&>img':{maxWidth:'400px',minWidth:'235px'}}}} className='hero_banner-image-container'>
+    <Box sx={{width:'90%',display:'flex',justifyContent:'center',padding:'0rem 1.5rem',height:'90vh',position:'relative',isolation:'isolate'}} m='0 auto' style={{alignItems:'flex-end'}}>
+        <Box sx={{ width: '55%', height: '95%', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', maxWidth: '500px', '@media (width < 1200px)': { width: '60%' }}} className='hero_banner-image-container'>
           <img src={BMIHeaderImg} alt="BMIHeader_img" className='hero_banner-img' />
-          </Box>  
+        </Box> 
+        <Box sx={{position:'absolute',top:'40%',zIndex:'-1',transform:'translateY(-50%)'}}>
+        <Typography sx={{fontSize:'5.0em',fontFamily:"'Black Ops One', cursive",letterSpacing:'0.04em',textAlign:'center',color:'#fff','@media (width <1170px)':{fontSize:'4em'},'@media (width <700px)':{fontSize:'3em'},'@media (width <500px)':{fontSize:'2.2em'}}}>FITNESS CALCULATOR</Typography>
+        <Typography sx={{fontSize:'5.0em',fontFamily:"'Black Ops One', cursive",letterSpacing:'0.04em',textAlign:'center',color:'#ed0202','@media (width <1170px)':{fontSize:'4em'},'@media (width <700px)':{fontSize:'3em'},'@media (width <500px)':{fontSize:'2.5em'}}}>BMI COUNT</Typography>
+        </Box>
       </Box>
     </>
   )

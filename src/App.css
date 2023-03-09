@@ -5,7 +5,12 @@ body {
     font-family: 'Philosopher', sans-serif; */
     font-family: 'Timmana', sans-serif;
   /* background-color: #FFFAFB; */
+  /* max-width: 1900px;
+  margin:0 auto; */
 }
+/* body > *{
+  max-width: 1900px;
+} */
 
 * {
   padding: 0px;
@@ -39,11 +44,21 @@ body {
   transform: scale(1.1);
 }
 .features_wrapper{
-  background-image: url('./assets/images/smoke-overlay_feature.jpg');
-  background-size: cover;
+  position: relative;
+}
+.features_wrapper::before{
+  content: '';
+  width: 100%;
+  height:100%;
+  z-index: -1;
+  position: absolute;
+  background-image: url('./assets/images/gym_equip_2.jpg');
   background-repeat: no-repeat;
-  /* width:100%;
-  height:100%; */
+  background-size:cover;
+}
+#testimonial_page::before{
+  transform: scale(-1);
+  background-position: 0% 20%; 
 }
 .accomplishments__wrapper{
   background-image: url('./assets/images/High_resolution_wallpaper_background_ID_77701968127.jpg');
@@ -233,24 +248,11 @@ line-height: 30px;
 .right-arrow,
 .left-arrow {
   cursor: pointer;
-  background: transparent;
-  outline: none;
-  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FF2625;
-  font-size: 25px;
-  border-radius: 4px;
-  /* position: absolute; */
-  bottom: -20px;
-  left: 80px;
-  transform: scale(1, 1);
+  transform: scale(1);
   transition: 0.3s all ease-in-out;
-}
-
-.right-arrow {
-  right: 140px;
 }
 
 .right-arrow:hover,
@@ -264,16 +266,11 @@ line-height: 30px;
   flex-wrap: wrap;
 }
 
-.detail-image {
-  width: 729px;
-  height: 742px;
-}
 
 
 .hero_banner-img{
    width: 100%;
    height:100%;
-   max-height:64rem;
    min-width: 260px;
    /* filter:brightness(100%) contrast(100%) grayscale(100%); */
    opacity:0.8;
@@ -293,6 +290,13 @@ line-height: 30px;
 #demo-simple-select~fieldset {
   border: 2px solid #fff;
 }
+.MuiFilledInput-root{
+  background-color: transparent !important;
+}
+.scroll_container{
+  display: flex;
+  gap:2rem;
+}
 
 #demo-simple-select{
 background-color: #ffffff67;
@@ -305,20 +309,52 @@ border-bottom: 2px solid #fff;
 }
 
 
-.bg_smoke{
+.bg_smoke_,
+.bg_smoke_fitnesscalculator{
   background-image: url("./assets/images/smoke-bg.jpg");
     background-repeat:no-repeat;
     background-size:100vw 100vh;
     background-position:right top;
     /* background-attachment: fixed; */
 }
-@media (width < 950px) {
-  .bg_smoke{
-    background-size: 150vw 100vh;
-  }
+.bg_smoke_exercises{
+    background-image: url("./assets/images/Bodybuilding_Men_511666_1366x768.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    isolation: isolate;
 }
+.bg_smoke_exerciseDetail{
+    background-image: url("./assets/images/wallpaper_1.webp");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    isolation: isolate;
+}
+.bg_smoke_exercises::before{
+   content: '';
+   position: absolute;
+   width:100%;
+   height:100%;
+   z-index: -1;
+    background-color: #0000007a;
+
+}
+.bg_smoke_exerciseDetail::before{
+   content: '';
+   position: absolute;
+   width:100%;
+   height:100%;
+   z-index: -1;
+    background-color: #0000007a;
+
+}
+/* @media (width < 950px) {
+  .bg_smoke_{
+    background-size: 100vw 100vh;
+  }
+} */
 .exercise-card {
   width: 400px;
+  min-width: 250px;
   height: 445px;
   background: #fff;
   border-top: 4px solid #FF2625;
@@ -336,28 +372,23 @@ border-bottom: 2px solid #fff;
   height: 326px;
 }
 
-.bodyPart-card {
-  transform: scale(1, 1);
-  transition: 0.3s all ease-in-out;
-}
-
-.exercise-card:hover,
-.bodyPart-card:hover {
-  transform: scale(1.1, 1.1);
+.exercise-card:hover{
+  transform: scale(1.1);
 }
 
 .search-btn:hover {
-  color: #FF2625 !important;
-  border: 1px solid #FF2625 !important;
+  color: #FF2625 ;
+  border: 1px solid #FF2625;
 }
 
 .exercise-video {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 387px;
-  height: 381px;
+  width: 500px;
+  height: 100%;
   text-decoration: none;
+  background-color: #000000d2;
 }
 
 .hero_banner-logo-container{
@@ -411,13 +442,15 @@ border-bottom: 2px solid #fff;
   }
   }
 }
+.detail-image {
+  width:100% ;
+  height: 100%;
+  max-width: 540px;
+  max-height: 540px;
+  border-radius: 20% 0px 20% 0px;
+}
 
 @media screen and (max-width:1200px) {
-  .detail-image {
-    width: 300px;
-    height: 300px;
-  }
-  
   .hero_banner-logo-container{
     display: none;
   }
@@ -441,99 +474,144 @@ border-bottom: 2px solid #fff;
     width: 320px;
   }
 
-  .exercise-video {
-    width: 320px;
-    height: 300px;
-  }
+ 
 
 }
 
-@media (width < 750px){
-  .carouselWrapper{
-    width:30rem;
-    height:25rem;
+
+@media (width < 750px) {
+  .carouselWrapper {
+    width: 30rem;
+    height: 25rem;
 
   }
-}
 
-@media (width < 550px){
-  .carouselWrapper{
-    width:25rem;
-    height:20rem;
-}
-.price_card_wrapper{
-  min-width: 250px;
-}
-.section_heading.price_heading{
-  font-size: 36px;
-}
-}
-@media (width < 450px){
-  .carouselWrapper{
-    width:20rem;
+  .bg_smoke_exercises {
+    background-size: 110vw 100vh;
+  }
+
+  .bg_smoke_exerciseDetail{
+    background-size: 130vw 100vh;
+    background-position:90% 0 ;
   }
 }
+@media (width < 700px) {
+  .blog_post_wrapper {
+    width: 100%;
+    display: grid;
+    place-self: center;
+    align-items: center;
+    grid-auto-columns: 100%;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: 0px;
+    scroll-snap-type: x mandatory;
+    max-width: 654px;
+  }
+
+  .blog_post_wrapper>* {
+    display: grid;
+    height: 100%;
+    gap: 2rem;
+    position: relative;
+    scroll-snap-align: none start;
+  }
+
+
+}
+@media (width < 630px) {
+  .testimonials_wrapper {
+    grid-auto-columns: 100%;
+  }
+
+  .testimonials_wrapper>*:nth-child(1),
+  .testimonials_wrapper>*:nth-child(3) {
+    scroll-snap-align: start;
+    min-width: 200px;
+  }
+
+  .testimonials_wrapper>*:nth-child(2),
+  .testimonials_wrapper>*:nth-child(4) {
+    scroll-snap-align: start;
+    min-width: 200px;
+  }
+   .exercise-video {
+    width: 100%;
+  }
+
+  .bg_smoke_exercises {
+    background-position: 90% 0;
+    background-size: 140vw 100vh;
+  }
+}
+
+
+
+@media (width < 550px) {
+  .carouselWrapper {
+    width: 25rem;
+    height: 20rem;
+  }
+
+  .price_card_wrapper {
+    min-width: 250px;
+  }
+
+  .section_heading.price_heading {
+    font-size: 36px;
+  }
+
+  .bg_smoke_,
+  .bg_smoke_fitnesscalculator {
+    background-size: 200vw 100vh;
+  }
+    .bg_smoke_exerciseDetail {
+      background-size: 160vw 100vh;
+    }
+}
+
+@media (width < 450px) {
+  .blog_post_wrapper>*>* {
+    margin-right: 1rem;
+  }
+  .carouselWrapper {
+    width: 20rem;
+  }
+  .bg_smoke_exercises {
+    background-size: 160vw 100vh;
+  }
+}
+
+
 @media (width < 400px) {
-  .exercise-card {
+  /* .exercise-card {
     width: 280px;
-  }
+  } */
+
   .section_heading.price_heading {
     font-size: 32px;
   }
-}
-@media (width < 360px){
-  .carouselWrapper{
-    width:15rem;
-    height:15rem;
+
+  .bg_smoke_exercises {
+    background-size: 180vw 100vh;
   }
+}
+
+@media (width < 360px) {
+  .carouselWrapper {
+    width: 15rem;
+    height: 15rem;
+  }
+
   .section_heading.price_heading {
     font-size: 29.4px;
   }
-}
-
-
-@media (width < 630px){
-  .testimonials_wrapper{
-    grid-auto-columns: 100%;
+  .bg_smoke_exercises {
+    background-position: 80% 0;
+    background-size: 210vw 100vh;
   }
-  .testimonials_wrapper > *:nth-child(1), .testimonials_wrapper>*:nth-child(3){
-    scroll-snap-align: start;
-    min-width: 200px;
-  }
-  .testimonials_wrapper > *:nth-child(2), .testimonials_wrapper>*:nth-child(4){
-    scroll-snap-align: start;
-    min-width: 200px;
-  }
-}
-
-@media (width < 700px){
-  .blog_post_wrapper {
-     width:100%;
-      display: grid;
-      place-self: center;
-      align-items: center;
-      grid-auto-columns: 100%;
-      grid-auto-flow: column;
-      overflow-x: scroll;
-      -ms-overflow-style: none;
-      scrollbar-width: 0px;
-      scroll-snap-type: x mandatory;
-      max-width: 654px;
-    }
-  
-    .blog_post_wrapper>* {
-      display: grid;
-      height:100%;
-      gap: 2rem;
-      position: relative;
-      scroll-snap-align: none start  ;
-    }
-    
-   
-}
-
-@media (width < 450px){
-  .blog_post_wrapper > *> *{
-    margin-right: 1rem;
+  .bg_smoke_exerciseDetail {
+      background-size: 200vw 100vh;
   }
 }

@@ -10,20 +10,20 @@ const BodyPart = ({bodyPart,item,setBodyPart}) => {
           className='bodyPart-card'
           sx={{
               borderTop: bodyPart === item ? '4px solid #ff2625' : '',
-              backgroundColor: '#fff',
+              backgroundColor: '#0e0c0cc9',
               borderBottomLeftRadius: '20px',
-              width: '270px',
+              maxWidth:'270px',
+              width:'270px',
               height: '280px',
               cursor: 'pointer',
               gap:'47px'
           }}
           onClick={() => {
               setBodyPart(item);
-              window.scrollTo({top:1800,left:100,behavior:'smooth'})
           }}
       >
           <img src={Icon} alt="dumbell" style ={{width:'40px',height:'40px'}} />
-          <Typography fontWeight='bold' fontSize='24px' textTransform='capitalize' color='#3A1212'>{item}</Typography>
+          <h2 className='section_heading' style={{textTransform:'uppercase',fontSize:'30px'}}>{item}</h2>
    </Stack>
   )
 }

@@ -11,7 +11,7 @@ const HeroBanner = () => {
          m='0 auto'
         >
         <Box sx={{ width: '55%', height: '100%', display: 'flex', justifyContent: 'center', alignItems:'flex-end',maxWidth:'450px','@media (width < 1200px)':{width:'60%'}}} className='hero_banner-image-container'>
-        <img src={HeroBannerImage} alt="banner" className='hero_banner-img' />
+        <img src={HeroBannerImage} alt="banner" className='hero_banner-img' style={{height:'95%'}} />
         </Box>
         <Box sx={{ width: '45%', height: 'inherit'}} className='hero_banner-logo-container'>
           <img src={HeroBannerLogo} alt="banner" className='hero_banner-logo' />

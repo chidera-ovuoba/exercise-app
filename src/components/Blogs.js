@@ -60,22 +60,22 @@ const blogsData = [
               width: 'inherit',
             },
           },
-          '@media (width < 500px)':{
-            minWidth:'200px'
+          '@media (width < 500px)': {
+           minWidth:'200px'
           },
           '@media (width < 1150px)':{
             width: '35rem',
           },
           '@media (width < 650px)': {
-            width:'20rem',
+            width:'25rem',
             height: '35rem',
             },
-          '@media (width < 380px)': {
-            width:'15rem',
+          '@media (width < 410px)': {
+            width:'16.5rem',
             height: '30rem',
             },
-           },
-           blog: {
+               },
+               blog: {
              display: 'flex',
              flexDirection: 'column',
              justifyContent:'space-between',
@@ -199,7 +199,7 @@ containerChildren.forEach(item => observer.observe(item))
 
   return (
       <Box className='features_wrapper'>
-        <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'6rem 1.5rem 0rem',gap:'2rem','@media (width < 1150px)':{flexDirection:"column"}}} m='0 auto'>
+        <Box sx={{width:'90%',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'6rem 0.5rem 0rem',gap:'2rem','@media (width < 1150px)':{flexDirection:"column"}}} m='0 auto'>
         <Box sx={styles.blogs_content}>
         <Box mb='1rem'>
       <h4 className='section_subheading'>News</h4>

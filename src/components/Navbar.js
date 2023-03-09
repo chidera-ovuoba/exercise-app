@@ -90,7 +90,7 @@ const Navbar = () => {
     <Stack
       direction='row'
       justifyContent='space-between'
-      sx={{ alignItems: 'center', height: '10vh', pt: '3rem',width:'90%' }}
+      sx={{ alignItems: 'center', height: '10vh', pt: '2rem',width:'90%' }}
       m='0 auto'
     >
 
@@ -101,7 +101,7 @@ const Navbar = () => {
         <Stack direction='row'  fontSize='24px' className={`menu_nav ${navState ? 'slideAnimation' : 'closeAnimation'}`} sx={styles.menuNav}>
         <Stack direction='row' gap='40px'>
           <Link to='/' style={{ textDecoration: 'none', color: '#fff' }}>Home</Link>
-          <a href="#exercises" style={{ textDecoration: 'none', color: '#fff' }}>Exercises</a>
+          <Link to="exercises" style={{ textDecoration: 'none', color: '#fff' }}>Exercises</Link>
           <a href="#testimonial_page" style={{ textDecoration: 'none', color: '#fff' }}>Testimonial</a>
           <a href="#pricing_page" style={{ textDecoration: 'none', color: '#fff' }}>Pricing</a>
           <Link to="fitnesscalculator"  style={{ textDecoration: 'none', color: '#fff' }}>Fitness Calculator</Link>

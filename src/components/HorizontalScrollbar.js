@@ -10,7 +10,7 @@ const LeftArrow = () => {
   const { scrollPrev } = useContext(VisibilityContext);
 
   return (
-    <Typography onClick={() => scrollPrev()} className="left-arrow">
+    <Typography onClick={() => scrollPrev()} className="left-arrow" sx={{mb:'0.5rem'}}>
       <img src={LeftArrowIcon} alt="right-arrow" />
     </Typography>
   );
@@ -20,7 +20,7 @@ const RightArrow = () => {
   const { scrollNext } = useContext(VisibilityContext);
   
   return (
-    <Typography onClick={() => scrollNext()} className="right-arrow">
+    <Typography onClick={() => scrollNext()} className="right-arrow" sx={{mt:'0.5rem'}}>
       <img src={RightArrowIcon} alt="right-arrow" />
     </Typography>
   );
@@ -31,7 +31,7 @@ const RightArrow = () => {
 const HorizontalScrollbar = ({data,bodyPart,setBodyPart,isBodyPart}) => {
     return (
     //   <div className="react-horizontal-scrolling-menu--scroll-container">
-      <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+      <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow} scrollContainerClassName='scroll_container'>
         
           {
           data.map((item) => {
@@ -39,7 +39,6 @@ const HorizontalScrollbar = ({data,bodyPart,setBodyPart,isBodyPart}) => {
               key={item.id || item}
               itemId={item.id || item}
               title={item.id || item}
-              m='0 40px'
             >
               {
                 isBodyPart ? <BodyPart item={item} bodyPart={bodyPart}

@@ -5,14 +5,14 @@ import Loader from './Loader';
 const SimilarExercises = ({targetDetail,equipmentDetail}) => {
   return (
       <Box
-          sx={{ mt: { lg: '100px', xs: '0' } }}>
-          <Typography variant='h3' mb={5}>Exercises that target the same muscle groups</Typography>
-      <Stack direction='row' sx={{p:'2',position:'relative'}}>
-              {targetDetail.length ? <HorizontalScrollbar data={targetDetail} />:<Loader/>}
+          sx={{width:'90%',m:'0 auto',display:'block',mb:"10px"}} className='section_wrapper'>
+          <h4 className='section_heading' style={{textTransform:'capitalize'}}>similar exercises </h4>
+      <Stack direction='row' sx={{mb:'4rem'}}>
+              <HorizontalScrollbar data={targetDetail} />
           </Stack>
-          <Typography variant='h3' mb={5}>Exercises that equipment the same muscle groups</Typography>
-      <Stack direction='row' sx={{p:'2',position:'relative'}}>
-              {equipmentDetail.length ? <HorizontalScrollbar data={equipmentDetail} />:<Loader/>}
+          <h4 className='section_heading' style={{textTransform:'capitalize'}}>similar equipments with exercises</h4>
+      <Stack direction='row'>
+               <HorizontalScrollbar data={equipmentDetail} />
           </Stack>
       </Box>
   )

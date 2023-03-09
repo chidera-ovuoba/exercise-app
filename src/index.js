@@ -6,18 +6,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   components: {
-    // Name of the component
     MuiInputLabel: {
       styleOverrides: {
-        // Name of the slot
         root: {
           color: 'gray',
-          ".Mui-focused": {
-            color:'red'
-          }
         },
-        focused: {
-        }
       },
     },
   },

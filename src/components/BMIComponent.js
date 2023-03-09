@@ -1,6 +1,11 @@
 import React, { useState,useEffect } from 'react'
 import { Box,TextField,Typography,Select,InputLabel,MenuItem, Button, GlobalStyles, Stack, Chip} from '@mui/material';
-import { fetchData } from '../utils/fetchData';
+import { fetchData,bmioptions } from '../utils/fetchData';
+
+
+
+
+
 const BMIComponent = () => {
     const [bmiParamsState, setBmiParamsState] = useState({});
     const [bmiState, setBmiState] = useState({});
@@ -16,7 +21,7 @@ const BMIComponent = () => {
     const handleBmiSubmit =async (e) => {
         e.preventDefault();
         try {
-            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bmi?${Object.entries(bmiParamsState).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bmi?${Object.entries(bmiParamsState).map((item)=>`${item[0]}=${item[1]}`).join('&')}`,bmioptions);
             setBmiState(data.data);
         } catch (err) {
             console.log(err.message)
@@ -25,7 +30,7 @@ const BMIComponent = () => {
     const handleBodyFatSubmit =async (e) => {
         e.preventDefault();
         try {
-            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bodyfat?${Object.entries(bodyFatParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/bodyfat?${Object.entries(bodyFatParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`,bmioptions);
             setBodyFat(data.data);
         } catch (err) {
             console.log(err.message)
@@ -34,7 +39,7 @@ const BMIComponent = () => {
     const handleDailyCalorieSubmit =async (e) => {
         e.preventDefault();
         try {
-            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/dailycalorie?${Object.entries(dailyCalorieParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/dailycalorie?${Object.entries(dailyCalorieParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`,bmioptions);
             setDailyCalorie(data.data)
         } catch (err) {
             console.log(err.message)
@@ -43,7 +48,7 @@ const BMIComponent = () => {
     const handleIdealWeightSubmit =async (e) => {
         e.preventDefault();
         try {
-            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/idealweight?${Object.entries(idealWeightParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/idealweight?${Object.entries(idealWeightParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`,bmioptions);
             setIdealWeight(data.data);
         } catch (err) {
             console.log(err.message)
@@ -52,7 +57,7 @@ const BMIComponent = () => {
     const handleMacroCalculatorSubmit =async (e) => {
         e.preventDefault();
         try {
-            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/macrocalculator?${Object.entries(macroCalculatorParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`);
+            const data = await fetchData(`https://fitness-calculator.p.rapidapi.com/macrocalculator?${Object.entries(macroCalculatorParams).map((item)=>`${item[0]}=${item[1]}`).join('&')}`,bmioptions);
             setMacroCalculator(data.data);
         } catch (err) {
             console.log(err.message)
